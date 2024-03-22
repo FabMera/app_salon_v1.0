@@ -2,6 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Esto afectará a todo el scroll de la página */
+::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+   
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c9c2c2; /* Color de fondo del thumb */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #918d8d; /* Color de fondo del thumb al hacer hover */
+}
 * {
     box-sizing: border-box;
     margin: 0;

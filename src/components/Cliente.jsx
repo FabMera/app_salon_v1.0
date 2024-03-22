@@ -3,6 +3,7 @@ import { Form, redirect } from "react-router-dom";
 import { FaEdit, FaRegTrashAlt, FaEye } from "react-icons/fa";
 import { eliminarCliente } from "../data/clientes";
 
+
 //Funcion para eliminar un cliente
 export async function action({ params }) {
     await eliminarCliente(params.id);
@@ -16,6 +17,7 @@ const Cliente = ({ cliente }) => {
             e.preventDefault();
         }
     };
+
     return (
         <tr className="border-b">
             <td className="p-6">
@@ -41,7 +43,8 @@ const Cliente = ({ cliente }) => {
                     onSubmit={handleSubmit}
                 >
                     <button type="submit">
-                        <FaRegTrashAlt className="mt-1"
+                        <FaRegTrashAlt
+                            className="mt-1"
                             style={{ color: "red", fontSize: "20px" }}
                         />
                     </button>

@@ -8,7 +8,9 @@ import NuevoClientePage, {
     action as nuevoClienteAction,
 } from "../pages/private_pages/NuevoClientePage";
 import NotFound from "../pages/public_pages/NotFound";
-import AgendaPage from "./../pages/private_pages/AgendaPage";
+import AgendaPage, {
+    loader as citasLoader,
+} from "./../pages/private_pages/AgendaPage";
 import Profesionales from "./../pages/private_pages/Profesionales";
 import NuevoProfesionalPage from "../pages/private_pages/NuevoProfesionalPage";
 import VentasPage from "../pages/private_pages/VentasPage";
@@ -53,6 +55,7 @@ export const router = createBrowserRouter([
             {
                 path: "/agenda",
                 element: <AgendaPage />,
+                loader: citasLoader,
             },
             {
                 path: "/agenda/nuevo",

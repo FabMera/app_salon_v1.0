@@ -11,7 +11,7 @@ import TextField from "@mui/material/TextField";
 import { obtenerServicios } from "../../data/servicios";
 import { obtenerProfesionales } from "../../data/profesionales";
 import { guardarCita } from "../../data/citas";
-
+import { format } from "date-fns";
 //Funcion loader para obtener los clientes
 export async function loader() {
     const clientes = await obtenerClientes();
@@ -57,8 +57,8 @@ const NuevaCitaPage = () => {
         const cita = {
             cliente: selectedClient,
             profesional: selectedProfessional,
-            serviciosSeleccionados: selectedService,
-            fecha: startDate,
+            serviciosSeleccionados: [selectedService],
+            fecha: format(startDate, "yyyy-MM-dd'T'HH:mm"),
         };
         const errores = validarCita(cita);
         if (errores.length) {
@@ -67,7 +67,7 @@ const NuevaCitaPage = () => {
         }
         try {
             await guardarCita(cita);
-            console.log(cita)
+            console.log(cita);
         } catch (error) {
             console.log("Ocurrió un error al guardar la cita:", error.message);
         }
@@ -109,9 +109,12 @@ const NuevaCitaPage = () => {
     };
 
     // Handler para seleccionar/deseleccionar servicios
-    const handleServiceChange = (e) => {
-        setSelectedService(Number(e.target.value));
-        console.log(selectedService);
+    const handleServiceChange = (event) => {
+        const selectedServiceId = Number(event.target.value);
+        const selectedService = selectedProfessionalServices.find(
+            (service) => service.id === selectedServiceId
+        );
+        setSelectedService(selectedService);
     };
     useEffect(() => {
         console.log(selectedService);
@@ -125,7 +128,8 @@ const NuevaCitaPage = () => {
             !selectedClient ||
             !selectedProfessional ||
             !startDate ||
-            !selectedService
+            !selectedService ||
+            Object.keys(selectedService).length === 0
         ) {
             newErrors.push("Todos los campos son obligatorios");
         }
@@ -143,6 +147,11 @@ const NuevaCitaPage = () => {
             // Manejar el error de una manera amigable para el usuario
         }
     };
+
+    /*     useEffect(() => {
+        console.log(format(startDate, "yyyy-MM-dd'T'HH:mm"));
+        console.log(selectedService)
+    }, [startDate]); */
 
     return (
         <div className="flex flex-col md:flex-row">
@@ -237,7 +246,7 @@ const NuevaCitaPage = () => {
                                 timeFormat="HH:mm"
                                 timeIntervals={15}
                                 timeCaption="time"
-                                dateFormat="MMMM d, yyyy h:mm aa"
+                                dateFormat="yyyy-MM-dd HH:mm"
                             />
                         </div>
                         <input

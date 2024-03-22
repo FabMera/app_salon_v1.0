@@ -36,7 +36,7 @@ const HomePage = () => {
                     className={`md:w-1/5 bg-indigo-600 px-5 py-10  transition-all duration-1000 ease-in-out md:transform md:translate-x-0 md:relative ${
                         isOpened
                             ? "max-w-full transform translate-x-0 visible absolute z-20 w-1/2"
-                            : "max-w-0 transform -translate-x-full invisible md:block fixed  "
+                            : "max-w-0 transform -translate-x-full invisible md:block fixed "
                     }`}
                 >
                     <div>
@@ -44,7 +44,7 @@ const HomePage = () => {
                             CLIENTES
                         </h2>
 
-                        <nav className="mt-10">
+                        <nav className="mt-10 ">
                             <NavLinked to="/clientes" setIsOpened={setIsOpened}>
                                 <div
                                     style={{
@@ -170,10 +170,10 @@ const HomePage = () => {
                         Cualquier duda y/o consulta : soporte@appsalon.cl
                     </footer>
                 </aside>
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full ">
                     <header className="bg-indigo-600 p-5 ">
                         <RxHamburgerMenu
-                            className="text-white hover:text-gray-300  transform transition-transform hover:scale-110 text-3xl cursor-pointer md:hidden fixed  left-5 z-30"
+                            className="text-white hover:text-gray-300  transform transition-transform hover:scale-110 text-3xl cursor-pointer md:hidden fixed left-5 z-30"
                             onClick={() => setIsOpened(!isOpened)}
                         />
                         <nav className="relative">
@@ -259,7 +259,7 @@ const HomePage = () => {
                     <main
                         className={`w-full mt-5 p-10 ${
                             isOpened ? "md:flex-row" : "md:flex-col"
-                        } md:flex-grow overflow-y-auto transition-transform duration-300 ease-in-out`}
+                        } md:flex-grow overflow-y-auto transition-transform duration-300 ease-in-out `}
                     >
                         <Outlet />
                     </main>
